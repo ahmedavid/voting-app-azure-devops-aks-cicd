@@ -1,0 +1,32 @@
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - vote/*
+
+pool:
+  name: OCIPool
+
+stages:
+  - stage: BuildDockerImage
+    displayName: Build Docker Image Stage
+    jobs:
+      - job: BuildDockerImageJob
+        displayName: Build Docker Image Job
+        steps:
+        - task: Docker@2
+          displayName: Build Docker Image Task
+          inputs:
+            containerRegistry: 'ahmedavid-docker-registry'
+            repository: 'ahmedavid/voting-result'
+            command: 'build'
+            Dockerfile: '**/vote/Dockerfile'
+        - task: Docker@2
+          displayName: Push Docker Image Task
+          inputs:
+            containerRegistry: 'ahmedavid-docker-registry'
+            repository: 'ahmedavid/voting-result'
+            command: 'push'
+            Dockerfile: '**/vote/Dockerfile'
