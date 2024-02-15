@@ -10,7 +10,7 @@ variables:
   imageRepository: resultapp
 
 pool:
-  vmImage: ubuntu-latest
+  name: OCIPool
 
 steps:
 - script: echo Hello, world!
