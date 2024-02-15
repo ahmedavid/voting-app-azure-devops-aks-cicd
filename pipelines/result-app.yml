@@ -4,7 +4,12 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - result
 
 variables:
   imageRepository: resultapp
@@ -14,10 +19,13 @@ pool:
 
 stages:
   - stage: BuildDockerImage
+    displayName: Build Docker Image Stage
     jobs:
       - job: BuildDockerImageJob
+        displayName: Build Docker Image Job
         steps:
         - task: Docker@2
+          displayName: Build Docker Image Task
           inputs:
             containerRegistry: 'ahmedavid-docker-registry'
             repository: 'ahmedavid/voting-result'
