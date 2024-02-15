@@ -12,11 +12,22 @@ variables:
 pool:
   name: OCIPool
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+  - stage: BuildDockerImage
+    jobs:
+      - job: BuildDockerImageJob
+        steps:
+        - task: Docker@2
+          inputs:
+            containerRegistry: 'ahmedavid-docker-registry'
+            repository: 'voting-result'
+            command: 'buildAndPush'
+            Dockerfile: '**/result/Dockerfile'
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'
