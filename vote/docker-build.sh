@@ -1,0 +1,1 @@
+docker build -t ahmedavid/voting-app-vote .
