@@ -45,7 +45,7 @@ stages:
         - task: ShellScript@2
           inputs:
             scriptPath: 'infra/scripts/updateK8sManifests.sh'
-            args: 'result ahmedavid/voting-result $(Build.BuildId) $(voting-app-var-group.ACCESS_TOKEN)'
+            args: 'result ahmedavid/voting-result $(Build.BuildId) $(ACCESS_TOKEN)'
 
 
 # steps:
