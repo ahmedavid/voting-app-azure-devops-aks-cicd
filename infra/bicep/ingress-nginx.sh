@@ -19,3 +19,16 @@ kubectl apply -f deployments/deployment/nginx-ingress.yaml
 kubectl apply -f deployments/service/loadbalancer.yaml
 
 kubectl get pods --namespace=nginx-ingress
+
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+
+cd ..
+kubectl apply -f ./echo.kube.yaml
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
+echo "\n"
+
+kubectl -n argocd patch service argocd-server -p '{"spec": {"type": "LoadBalancer"}}'

@@ -47,8 +47,6 @@ kind: Ingress
 metadata:
   name: echoserver
   namespace: echoserver
-  annotations:
-    kubernetes.io/ingress.class: nginx
 spec:
   ingressClassName: nginx
   rules:
