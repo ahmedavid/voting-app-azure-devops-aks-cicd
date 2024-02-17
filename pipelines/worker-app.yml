@@ -41,11 +41,11 @@ stages:
               latest
 
   - stage: UpdateImages
-    displayName: Build Docker Image Stage
+    displayName: Update GitOps Images
     jobs:
       - job:
         steps:
         - task: ShellScript@2
           inputs:
-            scriptPath: 'scripts/updateK8sManifests.sh'
+            scriptPath: 'infra/scripts/updateK8sManifests.sh'
             args: 'worker ahmedavid/voting-worker $(Build.BuildId) $(voting-app-var-group.ACCESS_TOKEN)'
