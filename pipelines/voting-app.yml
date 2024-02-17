@@ -41,7 +41,7 @@ stages:
               $(Build.BuildId)
               latest
 
-  - stage: Update Images
+  - stage: UpdateImages
     displayName: Build Docker Image Stage
     jobs:
       - job:
