@@ -1,31 +1,3 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: result-depl
-  name: result-depl
-  namespace: voting-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: result-app
-  template:
-    metadata:
-      labels:
-        app: result-app
-    spec:
-      containers:
-        - image: ahmedavid/voting-result:latest
-          imagePullPolicy: Always
-          name: result-container
-          ports:
-            - containerPort: 80
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "512Mi"
----
 apiVersion: v1
 kind: Service
 metadata:

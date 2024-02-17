@@ -12,7 +12,9 @@ trigger:
       - result
 
 variables:
-  imageRepository: resultapp
+  - name: imageRepository
+    value: resultapp
+  - group: voting-app-var-group
 
 pool:
   name: OCIPool
@@ -34,6 +36,18 @@ stages:
             tags: |
               $(Build.BuildId)
               latest
+
+  - stage: Update Images
+    displayName: Build Docker Image Stage
+    jobs:
+      - job:
+        steps:
+        - task: ShellScript@2
+          inputs:
+            scriptPath: 'scripts/updateK8sManifests.sh'
+            args: 'result ahmedavid/voting-result $(Build.BuildId) $(voting-app-var-group.ACCESS_TOKEN)'
+
+
 # steps:
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'

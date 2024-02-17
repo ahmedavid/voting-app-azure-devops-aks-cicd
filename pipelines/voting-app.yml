@@ -6,6 +6,10 @@ trigger:
     include:
       - vote/*
 
+variables:
+  - group: voting-app-var-group
+
+
 pool:
   name: OCIPool
 
@@ -36,3 +40,15 @@ stages:
             tags: |
               $(Build.BuildId)
               latest
+
+  - stage: Update Images
+    displayName: Build Docker Image Stage
+    jobs:
+      - job:
+        steps:
+        - task: ShellScript@2
+          inputs:
+            scriptPath: 'scripts/updateK8sManifests.sh'
+            args: 'vote ahmedavid/voting-vote $(Build.BuildId) $(voting-app-var-group.ACCESS_TOKEN)'
+
+
