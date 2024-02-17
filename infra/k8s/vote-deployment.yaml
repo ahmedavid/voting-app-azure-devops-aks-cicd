@@ -16,7 +16,7 @@ spec:
         app: vote-app
     spec:
       containers:
-        - image: ahmedavid/voting-vote:2115
+        - image: ahmedavid/voting-vote:2117
           imagePullPolicy: Always
           name: vote-container
           ports:
