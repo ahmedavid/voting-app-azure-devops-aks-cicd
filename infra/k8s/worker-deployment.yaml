@@ -16,7 +16,7 @@ spec:
         app: worker-app
     spec:
       containers:
-        - image: ahmedavid/voting-worker:latest
+        - image: ahmedavid/voting-worker:2116
           imagePullPolicy: Always
           name: worker-container
           resources:
