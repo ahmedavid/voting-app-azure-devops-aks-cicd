@@ -16,7 +16,7 @@ spec:
         app: result-app
     spec:
       containers:
-        - image: ahmedavid/voting-result:latest
+        - image: ahmedavid/voting-result:2114
           imagePullPolicy: Always
           name: result-container
           ports:
