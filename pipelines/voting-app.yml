@@ -23,6 +23,9 @@ stages:
             repository: 'ahmedavid/voting-vote'
             command: 'build'
             Dockerfile: '**/vote/Dockerfile'
+            tags: |
+              $(Build.BuildId)
+              latest
         - task: Docker@2
           displayName: Push Docker Image Task
           inputs:
@@ -30,3 +33,6 @@ stages:
             repository: 'ahmedavid/voting-vote'
             command: 'push'
             Dockerfile: '**/vote/Dockerfile'
+            tags: |
+              $(Build.BuildId)
+              latest

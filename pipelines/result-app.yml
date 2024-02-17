@@ -31,6 +31,9 @@ stages:
             repository: 'ahmedavid/voting-result'
             command: 'buildAndPush'
             Dockerfile: '**/result/Dockerfile'
+            tags: |
+              $(Build.BuildId)
+              latest
 # steps:
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
